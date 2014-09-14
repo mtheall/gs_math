@@ -489,7 +489,7 @@ void mtx44RotateZ(mtx44 *m, float r);
  */
 void mtx44Scale(mtx44 *m, float x, float y, float z);
 
-/*! Fill in a projection matrix
+/*! Fill in a perspective projection matrix
  *
  *  @param[out] m      Result matrix
  *  @param[in]  fovy   Field-of-view angle (in radians), in the Y-direction
@@ -497,7 +497,19 @@ void mtx44Scale(mtx44 *m, float x, float y, float z);
  *  @param[in]  near   Near clipping plane
  *  @param[in]  far    Far clipping plane
  */
-void mtx44Projection(mtx44 *m, float fovy, float aspect, float near, float far);
+void mtx44Perpective(mtx44 *m, float fovy, float aspect, float near, float far);
+
+/*! Fill in an orthogonal projection matrix
+ *
+ *  @param[out] m      Result matrix
+ *  @param[in]  left   Left vertical clipping plane
+ *  @param[in]  right  Right vertical clipping plane
+ *  @param[in]  bottom Bottom horizontal clipping plane
+ *  @param[in]  top    Top horizontal clipping plane
+ *  @param[in]  near   Near depth clipping plane
+ *  @param[in]  far    Far depth clipping plane
+ */
+void mtx44Ortho(mtx44 *m, float left, float right, float bottom, float top, float near, float far);
 
 /*! Convert a quaternion into a 4x4 matrix
  *

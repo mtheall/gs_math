@@ -29,7 +29,6 @@ void mtx44Rotate(mtx44 *m, vec3f axis, float r)
   rhs.v[2*4+1] = t*z*y - s*x;
   rhs.v[2*4+2] = t*z*z + c;
 
-#if 1
   for(i = 0; i < 3; ++i)
   {
     for(j = 0; j < 4; ++j)
@@ -42,27 +41,6 @@ void mtx44Rotate(mtx44 *m, vec3f axis, float r)
 
   for(j = 0; j < 4; ++j)
     result.v[3*4+j] = m->v[3*4+j];
-#else
-  result.v[0*4+0] = m->v[0*4+0]*rhs.v[0*4+0] + m->v[1*4+0]*rhs.v[0*4+1] + m->v[2*4+0]*rhs.v[0*4+2];
-  result.v[0*4+1] = m->v[0*4+1]*rhs.v[0*4+0] + m->v[1*4+1]*rhs.v[0*4+1] + m->v[2*4+1]*rhs.v[0*4+2];
-  result.v[0*4+2] = m->v[0*4+2]*rhs.v[0*4+0] + m->v[1*4+2]*rhs.v[0*4+1] + m->v[2*4+2]*rhs.v[0*4+2];
-  result.v[0*4+3] = m->v[0*4+3]*rhs.v[0*4+0] + m->v[1*4+3]*rhs.v[0*4+1] + m->v[2*4+3]*rhs.v[0*4+2];
-
-  result.v[1*4+0] = m->v[0*4+0]*rhs.v[1*4+0] + m->v[1*4+0]*rhs.v[1*4+1] + m->v[2*4+0]*rhs.v[1*4+2];
-  result.v[1*4+1] = m->v[0*4+1]*rhs.v[1*4+0] + m->v[1*4+1]*rhs.v[1*4+1] + m->v[2*4+1]*rhs.v[1*4+2];
-  result.v[1*4+2] = m->v[0*4+2]*rhs.v[1*4+0] + m->v[1*4+2]*rhs.v[1*4+1] + m->v[2*4+2]*rhs.v[1*4+2];
-  result.v[1*4+3] = m->v[0*4+3]*rhs.v[1*4+0] + m->v[1*4+3]*rhs.v[1*4+1] + m->v[2*4+3]*rhs.v[1*4+2];
-
-  result.v[2*4+0] = m->v[0*4+0]*rhs.v[2*4+0] + m->v[1*4+0]*rhs.v[2*4+1] + m->v[2*4+0]*rhs.v[2*4+2];
-  result.v[2*4+1] = m->v[0*4+1]*rhs.v[2*4+0] + m->v[1*4+1]*rhs.v[2*4+1] + m->v[2*4+1]*rhs.v[2*4+2];
-  result.v[2*4+2] = m->v[0*4+2]*rhs.v[2*4+0] + m->v[1*4+2]*rhs.v[2*4+1] + m->v[2*4+2]*rhs.v[2*4+2];
-  result.v[2*4+3] = m->v[0*4+3]*rhs.v[2*4+0] + m->v[1*4+3]*rhs.v[2*4+1] + m->v[2*4+3]*rhs.v[2*4+2];
-
-  result.v[3*4+0] = m->v[3*4+0];
-  result.v[3*4+1] = m->v[3*4+1];
-  result.v[3*4+2] = m->v[3*4+2];
-  result.v[3*4+3] = m->v[3*4+3];
-#endif
 
   *m = result;
 }
